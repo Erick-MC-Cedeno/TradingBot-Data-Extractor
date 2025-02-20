@@ -1,0 +1,4 @@
+tradingview-ta
+pandas
+matplotlib
+colorama
