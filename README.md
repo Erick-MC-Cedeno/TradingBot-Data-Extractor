@@ -13,6 +13,6 @@ $ python bot.py
 # Select
 ![Select](/CiscoTradingBot//screenshot/2025-02-20.png)  
 
-# Analisis
-![Analisis](/CiscoTradingBot//screenshot/2025-02-20%20(1).png) 
+# Analysis
+![Analysis](/CiscoTradingBot//screenshot/2025-02-20%20(1).png) 
 
