@@ -32,10 +32,8 @@ def seleccionar_moneda():
             print(banner)
             print(f"\n{Fore.LIGHTMAGENTA_EX}╔{'═'*60}╗")
             print(f"║{Fore.WHITE}{Back.LIGHTMAGENTA_EX}{' SELECCIÓN DE CRIPTOMONEDA '.center(58)}{Style.RESET_ALL}{Fore.LIGHTMAGENTA_EX}║")
-            print(f"║{Fore.WHITE} 1. Ethereum (ETH) {'':<40}║")
-            print(f"║{Fore.WHITE} 2. Pepe (PEPE) {'':<43}║")
-            print(f"║{Fore.WHITE} 3. Solana (SOL) {'':<43}║")
-            print(f"║{Fore.WHITE} 4. Bitcoin (BTC) {'':<42}║")
+            for key, value in MONEDAS.items():
+                print(f"║{Fore.WHITE} {key}. {value['nombre']} ({value['symbol'][:3]}) {'':<40}║")
             print(f"╚{'═'*60}╝")
             
             opcion = input(f"\n{Fore.LIGHTMAGENTA_EX}👉 Seleccione una moneda (1-4) o Q para salir: ").strip().lower()
@@ -85,11 +83,9 @@ def realizar_analisis(moneda):
 
         analysis = handler.get_analysis()
         current_time = time.strftime('%Y-%m-%d %H:%M:%S')
-        print(analysis)
         
         decimales = 8 if 'PEPE' in moneda['symbol'] else 2
         formato_precio = f"{{:.{decimales}f}}"
-        print(decimales)
         
         indicadores = {
             '📈 Precio Actual': f"{Fore.WHITE}{formato_precio.format(analysis.indicators.get('close'))} {moneda['symbol'][:3]}{Style.RESET_ALL}",
@@ -101,9 +97,9 @@ def realizar_analisis(moneda):
             '📊 ADX': f"{analysis.indicators.get('ADX', 0):.2f}",
             '📌 Estocástico': f"{Fore.WHITE}K: {analysis.indicators.get('Stoch.K', 0):.2f} | D: {analysis.indicators.get('Stoch.D', 0):.2f}",
             '📌 CCI (20)': f"{analysis.indicators.get('CCI20', 0):.2f}",
-            '📅 EMAs': f"{Fore.WHITE}50: {analysis.indicators.get('EMA50', 0):.2f} | 200: {analysis.indicators.get('EMA200', 0):.2f}",
-            '🛑 Soporte': f"{Fore.WHITE}S1: {analysis.indicators.get('Pivot.M.Classic.S1', 0):.2f} | S2: {analysis.indicators.get('Pivot.M.Classic.S2', 0):.2f}",
-            '🎯 Resistencia': f"{Fore.WHITE}R1: {analysis.indicators.get('Pivot.M.Classic.R1', 0):.2f} | R2: {analysis.indicators.get('Pivot.M.Classic.R2', 0):.2f}"
+            '📅 EMAs': f"{Fore.WHITE}50: {analysis.indicators.get('EMA50', 0):.2f} | 100: {analysis.indicators.get('EMA100', 0):.2f} | 200: {analysis.indicators.get('EMA200', 0):.2f}",
+            '🛑 Soporte': f"{Fore.WHITE}S1: {analysis.indicators.get('Pivot.M.Classic.S1', 0):.2f} | S2: {analysis.indicators.get('Pivot.M.Classic.S2', 0):.2f} | S3: {analysis.indicators.get('Pivot.M.Classic.S3', 0):.2f}",
+            '🎯 Resistencia': f"{Fore.WHITE}R1: {analysis.indicators.get('Pivot.M.Classic.R1', 0):.2f} | R2: {analysis.indicators.get('Pivot.M.Classic.R2', 0):.2f} | R3: {analysis.indicators.get('Pivot.M.Classic.R3', 0):.2f}"
         }
 
         os.system('cls' if os.name == 'nt' else 'clear')
@@ -151,7 +147,7 @@ def menu_principal():
             
             if opcion == '1':
                 print(f"\n{Fore.LIGHTMAGENTA_EX}🔄 Actualizando datos...{Style.RESET_ALL}")
-                time.sleep(1)
+                time.sleep(2)
             elif opcion == '2':
                 moneda_actual = None
             elif opcion == '3':

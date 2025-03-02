@@ -7,6 +7,8 @@ $ pip install -r requirements.txt
 $ python bot.py
 ```
 
+# Please run this bot in bash or gitbash terminal
+
 
 # CiscoTradingbot Screenshots
  
